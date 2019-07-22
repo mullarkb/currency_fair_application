@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # currency_fair_application
 
 ## Project setup
@@ -32,3 +33,6 @@ npm run test:unit
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+=======
+# currency_fair_application
+>>>>>>> 90830c2b001afda7fbe8ccc1c9eb82d479576a91
