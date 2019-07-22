@@ -1,28 +1,38 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Header></Header>
+    <TransactionInfo></TransactionInfo>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Header from './components/Header.vue'
+import TransactionInfo from './components/TransactionInfo'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    TransactionInfo,
+    Header
   }
 }
 </script>
 
 <style lang="less">
+  @import "./assets/less/master.less";
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  font-family: 'PostGrotesk-Medium', Arial, sans-serif;
+  background-color: #ffffff;
+  width: 100%;
+  border: none;
+  margin: 0;
+  padding: 0;
+  font-size: 10px;
+
+  p {
+    font-size: 1.4rem;
+    line-height: 1.5;
+    margin: 0;
+  }
 }
 </style>
