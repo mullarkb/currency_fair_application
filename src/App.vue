@@ -33,6 +33,7 @@ export default {
   margin: 0;
   padding: 0;
   font-size: 10px;
+  height: 100vh;
   p {
     font-size: 1.4rem;
     line-height: 1.5;
@@ -45,6 +46,7 @@ export default {
       width: 59%;
     }
     #details-panel{
+      height: 100vh;
       width:41%;
       background-color: #FBFBFB;
       border-left: solid 1px #E0E0E0;
