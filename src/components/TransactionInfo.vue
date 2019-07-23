@@ -1,32 +1,5 @@
 <template>
-  <!--
-  @TO DO:
-     - Tidy up css and use the power of less.
-     - Create button function
-     - Calculate currency conversion
-     - Break steps out into its own component
-  -->
   <div id="transaction-info">
-    <div class="steps">
-      <div class="step selected">
-        <div class="content">
-          <p class="small">Step 1</p>
-          <p>Transaction info</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="content">
-        <p class="small" >Step 2</p>
-        <p>Recipient info</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="content">
-        <p class="small">Step 3</p>
-        <p>Make payment</p>
-        </div>
-      </div>
-    </div>
     <div class="section-title">
       <h2>Let's set up your transaction!</h2>
       <p>Specify the amount to be sent or received</p>
@@ -60,57 +33,34 @@
 </template>
 
 <script>
+
     export default {
-        name: "TransactionInfo"
+      name: "TransactionInfo",
+      data(){
+          return{
+            verifyIdentity: false
+          }
+        },
+        props:{
+        },
+        methods:{
+          next(){
+            this.verifyIdentity = true
+          }
+        }
+
     }
 </script>
 
 <style lang="less" scoped>
   #transaction-info {
-    background-color: #ffffff;
     position: relative;
-    max-width: 564px;
     width: 100%;
-    margin: 0 auto;
     h2{
       font-size: 1.8rem;
       margin: 0;
       color: #212121;
       font-weight: 400;
-    }
-    .steps {
-      text-align: center;
-      display: inline-flex;
-      width: 100%;
-      margin-top: 53px;
-      .step{
-        width: 100%;
-        text-align: center;
-        border-style: solid;
-        border-width: 0 0 4px 0;
-        border-color: rgba(110, 192, 230, 0.2);
-        .content{
-          text-align: center;
-          display: inline-block;
-          padding: 21px;
-        }
-        p {
-          text-align: left;
-          color: #B0BEC5;
-          font-size: 1.4rem;
-          line-height: 1.5;
-          margin: 0;
-          &.small{
-            font-size: 1.2rem;
-          }
-        }
-      }
-      .selected {
-        border-color: #6EC0E6;
-        p {
-          color: #6EC0E6;
-        }
-      }
     }
     .section-title{
       text-align: left;

@@ -6,7 +6,7 @@
       </div>
       <div class="you-send">
         <div class="left">You Send</div>
-        <div class="right">€2,000.00</div>
+        <div class="right dark">€2,000.00</div>
       </div>
       <div class="receive-details">
         <div class="left">Receiving Details</div>
@@ -31,7 +31,7 @@
 
 <script>
     export default {
-        name: "DetailsPanel"
+        name: "DetailsPanel",
     }
 </script>
 

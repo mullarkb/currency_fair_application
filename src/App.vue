@@ -1,10 +1,23 @@
 <template>
+  <!--
+  @TO DO:
+     - Tidy up css and use the power of less.
+     - Fix Fonts
+     - Create button function
+     - Calculate currency conversion
+     - pass step number to steps index
+  -->
   <div id="app">
     <Header></Header>
     <div class="page-content">
-      <TransactionInfo></TransactionInfo>
+      <div class="page-left">
+        <StepsIndex></StepsIndex>
+        <TransactionInfo></TransactionInfo>
+        <Footer></Footer>
+      </div>
       <DetailsPanel></DetailsPanel>
     </div>
+    <IdentityVerification v-if="verifyIdentity"></IdentityVerification>
   </div>
 </template>
 
@@ -12,13 +25,23 @@
 import Header from './components/Header.vue'
 import TransactionInfo from './components/TransactionInfo'
 import DetailsPanel from './components/DetailsPanel'
-
+import Footer from './components/Footer'
+import StepsIndex from "./components/StepsIndex";
+import IdentityVerification from "./components/IdentityVerification";
 export default {
   name: 'app',
   components: {
+    StepsIndex,
     DetailsPanel,
     TransactionInfo,
-    Header
+    Header,
+    Footer,
+    IdentityVerification
+  },
+  data(){
+    return{
+      verifyIdentity:true,
+    }
   }
 }
 </script>
@@ -42,8 +65,12 @@ export default {
   .page-content{
     width:100%;
     display: inline-flex;
-    #transaction-info{
+    .page-left{
       width: 59%;
+      background-color: #ffffff;
+      position: relative;
+      max-width: 564px;
+      margin: 0 56px 0 auto ;
     }
     #details-panel{
       height: 100vh;
