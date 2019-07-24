@@ -1,4 +1,9 @@
 <template>
+  <!--
+    @TODO
+     - make sms number look good
+     - fix footer button appearance
+   -->
   <div id="identity-verification">
     <div class="identity-card">
       <div class="card-header">
@@ -13,9 +18,25 @@
         <div class="code-input">
           <vue-verification-code :style="codeStyle" :type="'number'" :maxlength="6" @output="codeOutput"></vue-verification-code>
         </div>
+        <div class="receive-code">
+          <div class="new-code">
+            <img src="../assets/images/refresh.png">
+            <a href="#">Receive a new code</a>
+          </div>
+          <div class="code-via-call">
+            <img src="../assets/images/call.png">
+            <a href="#">Receive a code via call instead</a>
+          </div>
+        </div>
       </div>
       <div class="card-footer">
-
+        <div class="footer-left">
+          <a href="#" class="button-blue">Verify Identity</a>
+          <a href="#" class="button-white">Back</a>
+        </div>
+        <div class="footer-right">
+          <a href="#" class="link-blue">I can't access this mobile device</a>
+        </div>
       </div>
     </div>
   </div>
@@ -86,7 +107,7 @@
         }
       }
       .card-body{
-        padding: 50px;
+        padding: 50px 93px;
         background-color: #FBFCFC;
         text-align: center;
         border-top: solid 1px #E0E0E0;
@@ -97,19 +118,48 @@
         }
         .code-all{
           padding: 0;
-          margin-top: 28px;
+          margin: 28px auto 17px auto;
+          :first-child{
+            margin-left:0 !important;
+          }
+          :last-child{
+            margin-right: 0 !important;
+          }
           .code-item{
             border-radius: 4px;
             border-color: #E0E0E0;
             width: 50px;
             height: 50px;
             line-height: 50px;
+            margin: 0 7px;
             &.code-active{
               border-color: #64B5F6 !important;
             }
           }
         }
-
+        .receive-code{
+          display:inline-flex;
+          width: 100%;
+          a{
+            font-family: 'PostGrotesk-Book';
+            font-size: 1.2rem;
+            line-height: 27px;
+            color: #768895;
+          }
+          &>div{
+            width: 50%;
+            img{
+              transform: translateY(3px);
+              padding-right: 10px;
+            }
+            &.new-code{
+              text-align: left;
+            }
+            &.code-via-call{
+              text-align: right;
+            }
+          }
+        }
       }
     }
   }
