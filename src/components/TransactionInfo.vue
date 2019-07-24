@@ -58,7 +58,11 @@
       },
       data(){
           return{
-            sendValue: 2000.00,
+            userInput:{
+              send: 0,
+              receive: 0
+            },
+            sendValue: 0,
             receiveValue: 0,
             verifyIdentity: false,
           }
@@ -73,9 +77,18 @@
         methods:{
           convertSendValue(){
             this.receiveValue = (this.sendValue * this.conversion) - this.fee
+            if(this.receiveValue < 0){
+              this.receiveValue = 0;
+            }
+            this.userInput.send = this.sendValue.toFixed(2);
+            this.userInput.receive = this.receiveValue.toFixed(2);
+            this.$emit('exchange', this.userInput)
           },
           convertReceiveValue(){
             this.sendValue = (this.receiveValue + this.fee )* (1/this.conversion)
+            this.userInput.send = this.sendValue.toFixed(2);
+            this.userInput.receive = this.receiveValue.toFixed(2);
+            this.$emit('exchange', this.userInput)
           },
           next(){
             this.$emit('next')
@@ -85,8 +98,10 @@
           sendValue(){
             this.convertSendValue()
           },
-          receiveValue(){
-            this.convertReceiveValue()
+          receiveValue(newVal){
+            if(newVal > 0) {
+              this.convertReceiveValue()
+            }
           }
         }
 
@@ -178,7 +193,7 @@
         .currency-inner {
           display: inline-flex;
           transform: translateY(30%);
-          h4, {
+          h4 {
             font-size: 1.6rem;
             color: #616161;
             line-height: 30px;
@@ -203,7 +218,7 @@
       color: #ffffff;
       padding: 14px 18px;
       display: inline-block;
-      margin: 36px 0 60px 0;
+      margin: 36px 0 50px 0;
       cursor: pointer;
     }
   }

@@ -15,13 +15,19 @@
         <TransactionInfo
           :conversion="conversionRate"
           :fee="conversionFee"
+          v-on:exchange="updateDetails"
           v-on:next="verifyUser">
         </TransactionInfo>
-        <Footer></Footer>
+        <Footer v-if="desktop"></Footer>
       </div>
-      <DetailsPanel></DetailsPanel>
+      <DetailsPanel
+        :details="transferDetails"
+      ></DetailsPanel>
+      <Footer v-if="mobile"></Footer>
     </div>
-    <IdentityVerification v-if="verifyIdentity" v-on:back="cancelUserVerification"></IdentityVerification>
+    <IdentityVerification v-if="verifyIdentity"
+                          v-on:back="cancelUserVerification"
+    ></IdentityVerification>
   </div>
 </template>
 
@@ -46,20 +52,48 @@ export default {
     return{
       verifyIdentity:false,
       conversionRate: null,
-      conversionFee:null
+      conversionFee:null,
+      transferDetails:{
+        send:0,
+        receive:0,
+        rate: 0.86022,
+        fee: 2.50,
+        saving: 66.19,
+        delivery: '25th November'
+      },
+      mobile: false,
+      desktop: true,
     }
   },
   mounted(){
     //api calls to receive conversion fees etc.. assigning values for now
     this.conversionRate = 0.86022
     this.conversionFee = 2.50
+    if (window.innerWidth < 769){
+      this.mobile = true
+      this.desktop = false
+    }
+    window.addEventListener('resize', this.onResize)
   },
   methods:{
+    updateDetails(data){
+      this.transferDetails.send = data.send
+      this.transferDetails.receive = data.receive
+    },
     verifyUser(){
       this.verifyIdentity = true
     },
     cancelUserVerification(){
       this.verifyIdentity = false
+    },
+    onResize(){
+      if (window.innerWidth < 769){
+        this.mobile = true
+        this.desktop = false
+      }else{
+        this.mobile = false
+        this.desktop = true
+      }
     }
   }
 }
@@ -81,22 +115,34 @@ export default {
     line-height: 1.5;
     margin: 0;
   }
-  .page-content{
-    width:100%;
-    display: inline-flex;
-    .page-left{
-      width: 59%;
-      background-color: #ffffff;
-      position: relative;
-      max-width: 564px;
-      margin: 0 56px 0 auto ;
-    }
-    #details-panel{
-      height: 100vh;
-      width:41%;
-      background-color: #FBFBFB;
-      border-left: solid 1px #E0E0E0;
+  @media (min-width: 769px) {
+    .page-content {
+      width: 100%;
+      display: inline-flex;
+
+      .page-left {
+        width: 59%;
+        background-color: #ffffff;
+        position: relative;
+        max-width: 564px;
+        margin: 0 56px 0 auto;
+      }
+
+      #details-panel {
+        height: 100vh;
+        width: 41%;
+        background-color: #FBFBFB;
+        border-left: solid 1px #E0E0E0;
+      }
     }
   }
+    @media (max-width: 768px){
+      .page-left{
+        width: 100%;
+        max-width: 564px;
+        margin: auto;
+        padding: 30px;
+      }
+    }
 }
 </style>

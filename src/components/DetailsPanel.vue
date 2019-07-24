@@ -6,7 +6,7 @@
       </div>
       <div class="you-send">
         <div class="left">You Send</div>
-        <div class="right dark">€2,000.00</div>
+        <div class="right dark">€{{details.send}}</div>
       </div>
       <div class="receive-details">
         <div class="left">Receiving Details</div>
@@ -14,16 +14,16 @@
       </div>
       <div class="details-content">
         <div class="left">Rate</div>
-        <div class="right">0.86022</div>
+        <div class="right">{{details.rate}}</div>
         <div class="left">Fee</div>
-        <div class="right">£2.50</div>
+        <div class="right">£{{details.fee}}</div>
         <div class="left">Delivery Date</div>
-        <div class="right">25th November</div>
+        <div class="right">{{details.delivery}}</div>
         <div class="left">Recipient Gets</div>
-        <div class="right dark">£1717.94</div>
+        <div class="right dark">£{{details.receive}}</div>
       </div>
       <div class="table-foot">
-        You save $66.19 compared to your bank!
+        You save £{{details.saving}} compared to your bank!
       </div>
     </div>
   </div>
@@ -32,6 +32,9 @@
 <script>
     export default {
         name: "DetailsPanel",
+      props:[
+        'details'
+      ],
     }
 </script>
 

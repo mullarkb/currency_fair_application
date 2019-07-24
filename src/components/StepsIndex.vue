@@ -44,7 +44,7 @@
       .content{
         text-align: center;
         display: inline-block;
-        padding: 21px;
+        padding: 0 21px 21px 21px;
       }
       p {
         text-align: left;
