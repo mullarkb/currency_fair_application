@@ -45,7 +45,7 @@
         },
         methods:{
           next(){
-            this.verifyIdentity = true
+            this.$emit('next')
           }
         }
 
@@ -145,6 +145,7 @@
       padding: 14px 18px;
       display: inline-block;
       margin: 36px 0 60px 0;
+      cursor: pointer;
     }
   }
 </style>

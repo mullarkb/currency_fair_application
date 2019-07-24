@@ -31,12 +31,13 @@
       </div>
       <div class="card-footer">
         <div class="footer-left">
-          <a href="#" class="button-blue">Verify Identity</a>
-          <a href="#" class="button-white">Back</a>
+          <a @click="verify" class="button button-blue" :class="{locked: !codeEntered}">Verify Identity</a>
+          <a @click="back" class="button button-white">Back</a>
         </div>
         <div class="footer-right">
           <a href="#" class="link-blue">I can't access this mobile device</a>
         </div>
+        <div class="clear-fix"></div>
       </div>
     </div>
   </div>
@@ -59,11 +60,20 @@
           }
         },
         methods:{
-          codeOutput(e){
-            this.verificationCode = e.data
-            if(e.isfinished){
+          codeOutput(event){
+            this.verificationCode = event.data
+            if(event.isfinished){
               this.codeEntered = true
+            }else{
+              this.codeEntered= false
             }
+          },
+          verify(){
+            //function to verify the entered code
+          },
+          back(){
+            this.$emit('back')
+            console.log('back')
           }
         }
     }
@@ -78,6 +88,19 @@
     left: 0;
     z-index: 1000;
     background-color: rgba(0, 0, 0, 0.75);
+    opacity: 1;
+    animation-name: fadeIn;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: 1s;
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
     .identity-card{
       max-width: 580px;
       width: 100%;
@@ -115,6 +138,21 @@
         p{
           color: #3C454B;
           font-size: 1.6rem;
+          .country-code, .phone-number{
+            color: #999999;
+            border: solid 1px #DEDDDD;
+          }
+          .country-code{
+            background-color: #F0EDED;
+            padding: 4px 6px 4px 13px;
+            border-radius: 2px 0 0 2px;
+            margin-left: 1px;
+          }
+          .phone-number{
+            background-color: #F4F4F4;
+            padding: 4px 13px;
+            border-radius: 0 2px 2px 0;
+          }
         }
         .code-all{
           padding: 0;
@@ -159,6 +197,49 @@
               text-align: right;
             }
           }
+        }
+      }
+      .card-footer{
+        padding: 31px;
+        &>div{
+          width: 50%;
+        }
+        .footer-left {
+          text-align: left;
+          float: left;
+        }
+        .footer-right{
+          text-align: right;
+          float: right;
+        }
+        .clear-fix{
+          clear: both;
+        }
+        .button{
+          padding: 8px 15px;
+          border: solid 1px #E0E0E0;
+          border-radius: 4px;
+          margin-right: 20px;
+          font-size: 1.4rem;
+          cursor: pointer;
+        }
+        .button-blue{
+          background-color: #6EC0E6;
+          color: #ffffff;
+          font-family: PostGrotesk-Medium;
+          &.locked{
+            background-color: rgba(110, 192, 230, 0.5);
+            cursor: not-allowed;
+          }
+        }
+        .button-white{
+          color: #808080;
+          background-color: #ffffff;
+          font-family: PostGrotesk-Book;
+        }
+        .link-blue{
+          color: #6EC0E6;
+          font-family: PostGrotesk-Medium;
         }
       }
     }

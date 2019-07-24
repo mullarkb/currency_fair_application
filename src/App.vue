@@ -12,12 +12,12 @@
     <div class="page-content">
       <div class="page-left">
         <StepsIndex></StepsIndex>
-        <TransactionInfo></TransactionInfo>
+        <TransactionInfo v-on:next="verifyUser"></TransactionInfo>
         <Footer></Footer>
       </div>
       <DetailsPanel></DetailsPanel>
     </div>
-    <IdentityVerification v-if="verifyIdentity"></IdentityVerification>
+    <IdentityVerification v-if="verifyIdentity" v-on:back="cancelUserVerification"></IdentityVerification>
   </div>
 </template>
 
@@ -40,7 +40,15 @@ export default {
   },
   data(){
     return{
-      verifyIdentity:true,
+      verifyIdentity:false,
+    }
+  },
+  methods:{
+    verifyUser(){
+      this.verifyIdentity = true
+    },
+    cancelUserVerification(){
+      this.verifyIdentity = false
     }
   }
 }
