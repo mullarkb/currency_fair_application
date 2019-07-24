@@ -7,7 +7,15 @@
     <div class="money">
       <div class="send">
         <p>You Send</p>
-        <h3>€2,000<span class="cent">.00</span></h3>
+        <div class="input-wrap">
+          <h3>€</h3>
+          <vue-numeric
+                       separator=","
+                       :precision=2
+                       v-model="sendValue"
+                       placeholder="0.00"
+          />
+        </div>
       </div>
       <div class="currency">
         <div class="currency-inner">
@@ -17,7 +25,16 @@
       </div>
       <div class="receive">
         <p>Receiver Gets</p>
-        <h3>£1,717<span class="cent">.94</span></h3>
+        <div class="input-wrap">
+          <h3>£</h3>
+          <vue-numeric
+                       separator=","
+                       :precision=2
+                       v-model="receiveValue"
+                       placeholder="0.00"
+                       @change="convertReceiveValue"
+          />
+        </div>
       </div>
       <div class="currency">
         <div class="currency-inner">
@@ -33,19 +50,43 @@
 </template>
 
 <script>
-
+    import VueNumeric from 'vue-numeric'
     export default {
       name: "TransactionInfo",
+      components:{
+        VueNumeric
+      },
       data(){
           return{
-            verifyIdentity: false
+            sendValue: 2000.00,
+            receiveValue: 0,
+            verifyIdentity: false,
           }
         },
-        props:{
+        props:[
+          'conversion',
+          'fee'
+        ],
+        mounted(){
+          this.convertSendValue()
         },
         methods:{
+          convertSendValue(){
+            this.receiveValue = (this.sendValue * this.conversion) - this.fee
+          },
+          convertReceiveValue(){
+            this.sendValue = (this.receiveValue + this.fee )* (1/this.conversion)
+          },
           next(){
             this.$emit('next')
+          }
+        },
+        watch:{
+          sendValue(){
+            this.convertSendValue()
+          },
+          receiveValue(){
+            this.convertReceiveValue()
           }
         }
 
@@ -77,10 +118,14 @@
         padding: 9.5px 24px;
         border-style: solid;
         border-width: 1px;
-        h3{
+        h3, input{
           font-size: 2.8rem;
-          margin: 0;
+          font-family: PostGrotesk-Medium;
+          color: #212121;
+          font-weight: 400;
+          margin: 0 10px 0 0;
           line-height: 38px;
+          padding: 0;
           .cent{
             font-size: 1.8rem;
           }
@@ -88,6 +133,20 @@
         p{
           text-transform: uppercase;
           line-height: 38px;
+        }
+        .input-wrap{
+          display: inline-flex;
+        }
+        ::placeholder{
+          color: #212121;
+        }
+        input{
+          border-style: none;
+          background: transparent;
+          &:active, &:focus{
+            border-style: none;
+            outline: none;
+          }
         }
       }
       .send {
@@ -119,7 +178,7 @@
         .currency-inner {
           display: inline-flex;
           transform: translateY(30%);
-          h4 {
+          h4, {
             font-size: 1.6rem;
             color: #616161;
             line-height: 30px;

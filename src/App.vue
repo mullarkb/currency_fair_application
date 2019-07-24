@@ -12,7 +12,11 @@
     <div class="page-content">
       <div class="page-left">
         <StepsIndex></StepsIndex>
-        <TransactionInfo v-on:next="verifyUser"></TransactionInfo>
+        <TransactionInfo
+          :conversion="conversionRate"
+          :fee="conversionFee"
+          v-on:next="verifyUser">
+        </TransactionInfo>
         <Footer></Footer>
       </div>
       <DetailsPanel></DetailsPanel>
@@ -41,7 +45,14 @@ export default {
   data(){
     return{
       verifyIdentity:false,
+      conversionRate: null,
+      conversionFee:null
     }
+  },
+  mounted(){
+    //api calls to receive conversion fees etc.. assigning values for now
+    this.conversionRate = 0.86022
+    this.conversionFee = 2.50
   },
   methods:{
     verifyUser(){
