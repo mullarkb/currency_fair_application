@@ -115,19 +115,30 @@ export default {
     line-height: 1.5;
     margin: 0;
   }
+  @media (min-width: 1100px){
+    .page-left {
+      margin: 0 56px 0 auto;
+    }
+  }
+  @media (max-width: 1100px){
+    .page-left{
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    .details-table{
+      margin: 53px auto;
+    }
+  }
   @media (min-width: 769px) {
     .page-content {
       width: 100%;
       display: inline-flex;
-
       .page-left {
         width: 59%;
         background-color: #ffffff;
         position: relative;
         max-width: 564px;
-        margin: 0 56px 0 auto;
       }
-
       #details-panel {
         height: 100vh;
         width: 41%;
@@ -136,12 +147,25 @@ export default {
       }
     }
   }
-    @media (max-width: 768px){
-      .page-left{
+    @media (max-width: 768px) {
+      .page-content {
         width: 100%;
-        max-width: 564px;
-        margin: auto;
-        padding: 30px;
+        display: block;
+        .page-left {
+          display: block;
+          max-width: 564px;
+          margin: auto;
+          padding: 10px;
+          .next-button{
+            margin-bottom: 20px;
+          }
+        }
+        #details-panel{
+          border-top: solid 1px #E0E0E0;
+          .details-table{
+            margin: 20px auto;
+          }
+        }
       }
     }
 }

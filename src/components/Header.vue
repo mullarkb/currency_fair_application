@@ -18,9 +18,12 @@
       height: 66px;
       width: 100%;
       .logo {
-        margin: 5px 0;
+        margin: 5px 10%;
         max-width: 131px;
         position: absolute;
+        @media (max-width: 650px){
+          margin: 5px;
+        }
         img {
           width: 100%;
         }
