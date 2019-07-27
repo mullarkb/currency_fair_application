@@ -16,7 +16,7 @@
         <div class="left">Rate</div>
         <div class="right">{{details.rate}}</div>
         <div class="left">Fee</div>
-        <div class="right">£{{details.fee}}</div>
+        <div class="right">£{{fee}}</div>
         <div class="left">Delivery Date</div>
         <div class="right">{{details.delivery}}</div>
         <div class="left">Recipient Gets</div>
@@ -35,6 +35,12 @@
       props:[
         'details'
       ],
+      computed:{
+          fee(){
+            // display the final second decimal on the fee
+            return this.details.fee.toFixed(2)
+        }
+      }
     }
 </script>
 

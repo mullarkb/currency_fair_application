@@ -1,3 +1,4 @@
+@import "variables";
 html{
   font-size: 10px;
   @media (max-width: 500px){
@@ -28,7 +29,7 @@ html{
       .page-content {
         width: 100%;
         display: inline-flex;
-        .page-left {
+        .page-left,.logo {
           width: 59%;
           background-color: #ffffff;
           position: relative;
@@ -37,7 +38,7 @@ html{
         #details-panel {
           height: 100vh;
           width: 41%;
-          background-color: @background-grey;
+          background-color: #FBFBFB;
           border-left: @border;
         }
       }
@@ -46,7 +47,7 @@ html{
       .page-content {
         width: 100%;
         display: block;
-        .page-left {
+        .page-left,.logo {
           display: block;
           max-width: 564px;
           margin: auto;

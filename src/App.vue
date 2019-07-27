@@ -11,10 +11,10 @@
     <Header></Header>
     <div class="page-content">
       <div class="page-left">
-        <StepsIndex></StepsIndex>
+        <StepsIndex :step="step"></StepsIndex>
         <TransactionInfo
-          :conversion="conversionRate"
-          :fee="conversionFee"
+          :conversion="transferDetails.rate"
+          :fee="transferDetails.fee"
           v-on:exchange="updateDetails"
           v-on:next="verifyUser">
         </TransactionInfo>
@@ -25,8 +25,9 @@
       ></DetailsPanel>
       <Footer v-if="mobile"></Footer>
     </div>
-    <IdentityVerification v-if="verifyIdentity"
-                          v-on:back="cancelUserVerification"
+    <IdentityVerification
+      v-if="verifyIdentity"
+      v-on:back="cancelUserVerification"
     ></IdentityVerification>
   </div>
 </template>
@@ -51,42 +52,50 @@ export default {
   data(){
     return{
       verifyIdentity:false,
-      conversionRate: null,
-      conversionFee:null,
       transferDetails:{
         send:0,
         receive:0,
-        rate: 0.86022,
-        fee: 2.50,
-        saving: 66.19,
+        rate: 0,
+        fee: 0,
+        saving: 0,
         delivery: '25th November'
       },
+      step: 1,// change this to 2 or 3 to see the index change
       mobile: false,
       desktop: true,
     }
   },
   mounted(){
-    //api calls to receive conversion fees etc.. assigning values for now
-    this.conversionRate = 0.86022
-    this.conversionFee = 2.50
+    //api calls to receive conversion fees etc, would use vuex for scalability... assigning values for now.
+    this.transferDetails.rate = 0.86022
+    this.transferDetails.fee = 2.50
+
+    //set conditional mobile and desktop classes for footer placement
     if (window.innerWidth < 769){
       this.mobile = true
       this.desktop = false
     }
+    //watch for window resize
     window.addEventListener('resize', this.onResize)
   },
   methods:{
     updateDetails(data){
+      //when data is emitted from transactionInfo component, send it back to the DetailsPanel component
       this.transferDetails.send = data.send
       this.transferDetails.receive = data.receive
+      //probably want to call another function here to work out the saving
+      this.transferDetails.saving = 66.19
     },
     verifyUser(){
+      //show the identityVerification component
       this.verifyIdentity = true
     },
     cancelUserVerification(){
+      //hide the identityVerification component
       this.verifyIdentity = false
     },
     onResize(){
+      //if the layout is going to be stacked, move the footer to the bottom of screen
       if (window.innerWidth < 769){
         this.mobile = true
         this.desktop = false
