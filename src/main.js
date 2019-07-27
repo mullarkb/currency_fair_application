@@ -3,7 +3,6 @@ import App from './App.vue'
 import VerificationCode from 'vue-verification-code'
 Vue.use(VerificationCode)
 
-
 Vue.config.productionTip = false
 
 new Vue({

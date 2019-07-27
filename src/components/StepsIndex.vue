@@ -30,6 +30,7 @@
 </script>
 
 <style lang="less" scoped>
+  @import '../assets/less/variables.less';
   .steps {
     text-align: center;
     display: inline-flex;
@@ -58,9 +59,9 @@
       }
     }
     .selected {
-      border-color: #6EC0E6;
+      border-color: @brand-blue;
       p {
-        color: #6EC0E6;
+        color: @brand-blue;
       }
     }
   }

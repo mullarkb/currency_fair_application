@@ -39,11 +39,12 @@
 </script>
 
 <style lang="less" scoped>
+  @import "../assets/less/variables.less";
   .details-table{
     margin: 53px auto auto 56px;
     max-width: 310px;
     width: 100%;
-    border: solid 1px #E0E0E0;
+    border: @border;
     border-radius: 3px;
     border-collapse: collapse;
     display: flex;
@@ -52,7 +53,7 @@
     line-height: 24px;
     &>div{
       padding: 20px;
-      border-bottom: solid 1px #E0E0E0;
+      border-bottom: @border;
       width: 100%;
       max-width: 100%;
       &>div{
@@ -61,16 +62,20 @@
     }
     .table-head{
       color: #616161;
-      border-bottom: solid 1px #E0E0E0;
+      border-bottom: @border;
       width: 100%;
+      background-color: @background-grey-secondary;
     }
     .right{
       text-align: right;
     }
     .details-content, .you-send{
         background-color: #ffffff;
-        color: #9E9E9E;
+        color: @text-light-grey;
       }
+    .receive-details{
+      background-color: @background-grey-secondary;
+    }
     .you-send, .receive-details{
       display: inline-flex;
     }
@@ -88,9 +93,10 @@
     }
     .table-foot{
       border-style: none;
-        text-align: center;
-        color: #FFC766;
-        font-size: 1.2rem;
+      text-align: center;
+      color: #FFC766;
+      font-size: 1.2rem;
+      background-color: #ffffff;
       }
     }
   .dark{

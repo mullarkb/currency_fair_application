@@ -80,6 +80,7 @@
 </script>
 
 <style lang="less">
+  @import '../assets/less/variables.less';
   #identity-verification{
     position: fixed;
     width: 100%;
@@ -133,8 +134,8 @@
         padding: 50px 93px;
         background-color: #FBFCFC;
         text-align: center;
-        border-top: solid 1px #E0E0E0;
-        border-bottom: solid 1px #E0E0E0;
+        border-top: @border;
+        border-bottom: @border;
         p{
           color: #3C454B;
           font-size: 1.6rem;
@@ -217,14 +218,14 @@
         }
         .button{
           padding: 8px 15px;
-          border: solid 1px #E0E0E0;
+          border: @border;
           border-radius: 4px;
           margin-right: 20px;
           font-size: 1.4rem;
           cursor: pointer;
         }
         .button-blue{
-          background-color: #6EC0E6;
+          background-color: @brand-blue;
           color: #ffffff;
           font-family: PostGrotesk-Medium;
           &.locked{
@@ -238,7 +239,7 @@
           font-family: PostGrotesk-Book;
         }
         .link-blue{
-          color: #6EC0E6;
+          color: @brand-blue;
           font-family: PostGrotesk-Medium;
         }
       }

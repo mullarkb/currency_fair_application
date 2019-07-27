@@ -108,14 +108,15 @@
     }
 </script>
 
-<style lang="less" scoped>
+<style lang="less" >
+  @import '../assets/less/variables.less';
   #transaction-info {
     position: relative;
     width: 100%;
     h2{
       font-size: 1.8rem;
       margin: 0;
-      color: #212121;
+      color: @text-dark-grey;
       font-weight: 400;
     }
     .section-title{
@@ -136,7 +137,7 @@
         h3, input{
           font-size: 2.8rem;
           font-family: PostGrotesk-Medium;
-          color: #212121;
+          color: @text-dark-grey;
           font-weight: 400;
           margin: 0 10px 0 0;
           line-height: 38px;
@@ -153,7 +154,7 @@
           display: inline-flex;
         }
         ::placeholder{
-          color: #212121;
+          color: @text-dark-grey;
         }
         input{
           border-style: none;
@@ -166,10 +167,10 @@
       }
       .send {
         background: rgba(110, 192, 230, 0.03);
-        border-color: #6EC0E6;
+        border-color: @brand-blue;
         border-radius: 4px 4px 0 0;
         p{
-          color: #6EC0E6;
+          color: @brand-blue;
         }
       }
       .receive {
@@ -177,22 +178,25 @@
         border-radius: 0 0 4px 4px;
         background: #ffffff;
         p{
-          color: #9E9E9E;
+          color: @text-light-grey;
         }
       }
       .currency{
         position: absolute;
         right: 24px;
-        transform: translateY(-74px);
+        transform: translateY(-71.5px);
         width: 90px;
-        height: 47px;
+        height: 45px;
         text-align: center;
         border: 1px solid #E0E0E0;
         border-radius: 24px 4px 4px 24px;
         background-color: #ffffff;
+        &:last-child{
+          background-color:@background-grey-secondary;
+        }
         .currency-inner {
           display: inline-flex;
-          transform: translateY(30%);
+          transform: translateY(8px);
           h4 {
             font-size: 1.6rem;
             color: #616161;
@@ -210,7 +214,7 @@
       }
     }
     .next-button{
-      background-color: #6EC0E6;
+      background-color: @brand-blue;
       border: solid 1px #589AB8;
       border-radius: 4px;
       font-size: 1.6rem;
