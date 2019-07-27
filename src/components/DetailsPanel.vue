@@ -30,18 +30,18 @@
 </template>
 
 <script>
-    export default {
-        name: "DetailsPanel",
-      props:[
-        'details'
-      ],
-      computed:{
-          fee(){
-            // display the final second decimal on the fee
-            return this.details.fee.toFixed(2)
-        }
-      }
+export default {
+  name: 'DetailsPanel',
+  props: [
+    'details'
+  ],
+  computed: {
+    fee () {
+      // display the final second decimal on the fee
+      return this.details.fee.toFixed(2)
     }
+  }
+}
 </script>
 
 <style lang="less" scoped>

@@ -49,72 +49,72 @@
 </template>
 
 <script>
-   // used vue numeric to save time on live input formatting. Would probably do the whole thing manually if designer was keen on smaller font decimal points  https://www.npmjs.com/package/vue-numeric
-    import VueNumeric from 'vue-numeric'
-    export default {
-      name: "TransactionInfo",
-      components:{
-        VueNumeric
+// used vue numeric to save time on live input formatting. Would probably do the whole thing manually if designer was keen on smaller font decimal points  https://www.npmjs.com/package/vue-numeric
+import VueNumeric from 'vue-numeric'
+export default {
+  name: 'TransactionInfo',
+  components: {
+    VueNumeric
+  },
+  data () {
+    return {
+      userInput: {
+        send: 0,
+        receive: 0
       },
-      data(){
-          return{
-            userInput:{
-              send: 0,
-              receive: 0
-            },
-            sendValue: 0,
-            receiveValue: 0,
-            verifyIdentity: false,
-          }
-        },
-        props:[
-          'conversion',
-          'fee'
-        ],
-        mounted(){
-          //if a default send value is set, convert it
-          this.convertSendValue()
-        },
-        methods:{
-          convertSendValue(){
-            this.receiveValue = (this.sendValue * this.conversion) - this.fee
-            //display 0 if the converted rated is less than the fee
-            if(this.receiveValue < 0){
-              this.receiveValue = 0;
-            }
-            //fix values to 2 decimal places and emit back to parent
-            this.userInput.send = this.sendValue.toFixed(2);
-            this.userInput.receive = this.receiveValue.toFixed(2);
-            this.$emit('exchange', this.userInput)
-          },
-          convertReceiveValue(){
-            //add the fee before reverse conversion
-            this.sendValue = (this.receiveValue + this.fee )* (1/this.conversion)
-            //fix values to 2 decimal places and emit back to parent
-            this.userInput.send = this.sendValue.toFixed(2);
-            this.userInput.receive = this.receiveValue.toFixed(2);
-            this.$emit('exchange', this.userInput)
-          },
-          next(){
-            //tell parent next button was clicked
-            this.$emit('next')
-          }
-        },
-        watch:{
-        //if the you send input changes, convert the value
-          sendValue(){
-            this.convertSendValue()
-          },
-          //if the receiver input changes, convert the value
-          receiveValue(newVal){
-            //only bother to convert if the value is greater than 0
-            if(newVal > 0) {
-              this.convertReceiveValue()
-            }
-          }
-        }
-
+      sendValue: 0,
+      receiveValue: 0,
+      verifyIdentity: false
     }
+  },
+  props: [
+    'conversion',
+    'fee'
+  ],
+  mounted () {
+    // if a default send value is set, convert it
+    this.convertSendValue()
+  },
+  methods: {
+    convertSendValue () {
+      this.receiveValue = (this.sendValue * this.conversion) - this.fee
+      // display 0 if the converted rated is less than the fee
+      if (this.receiveValue < 0) {
+        this.receiveValue = 0
+      }
+      // fix values to 2 decimal places and emit back to parent
+      this.userInput.send = this.sendValue.toFixed(2)
+      this.userInput.receive = this.receiveValue.toFixed(2)
+      this.$emit('exchange', this.userInput)
+    },
+    convertReceiveValue () {
+      // add the fee before reverse conversion
+      this.sendValue = (this.receiveValue + this.fee) * (1 / this.conversion)
+      // fix values to 2 decimal places and emit back to parent
+      this.userInput.send = this.sendValue.toFixed(2)
+      this.userInput.receive = this.receiveValue.toFixed(2)
+      this.$emit('exchange', this.userInput)
+    },
+    next () {
+      // tell parent next button was clicked
+      this.$emit('next')
+    }
+  },
+  watch: {
+    // if the you send input changes, convert the value
+    sendValue () {
+      this.convertSendValue()
+    },
+    // if the receiver input changes, convert the value
+    receiveValue (newVal) {
+      // only bother to convert if the value is greater than 0
+      if (newVal > 0) {
+        this.convertReceiveValue()
+      }
+    }
+  }
+
+}
 </script>
 
 <style lang="less" >

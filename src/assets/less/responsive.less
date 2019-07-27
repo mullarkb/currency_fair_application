@@ -25,20 +25,22 @@ html{
         margin: 53px auto;
       }
     }
+    /*
+    On anything bigger than an ipad:
+    Use percentages to 'afix' details box to position on screen.
+     */
     @media (min-width: 769px) {
       .page-content {
         width: 100%;
         display: inline-flex;
-        .page-left,.logo {
+        .page-left{
           width: 59%;
-          background-color: #ffffff;
           position: relative;
           max-width: 564px;
         }
         #details-panel {
           height: 100vh;
           width: 41%;
-          background-color: #FBFBFB;
           border-left: @border;
         }
       }
@@ -47,7 +49,7 @@ html{
       .page-content {
         width: 100%;
         display: block;
-        .page-left,.logo {
+        .page-left{
           display: block;
           max-width: 564px;
           margin: auto;

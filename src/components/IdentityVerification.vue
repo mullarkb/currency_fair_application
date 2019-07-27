@@ -44,39 +44,39 @@
 </template>
 
 <script>
-  export default {
-        name: "IdentityVerification",
-        data(){
-          return {
-            phoneNumber: {
-              countryCode: '+353',
-              number: '872251177',
-            },
-            codeStyle:{
-              color:'#768895',
-            },
-            verificationCode:null,
-            codeEntered: false
-          }
-        },
-        methods:{
-          codeOutput(event){
-            this.verificationCode = event.data
-            if(event.isfinished){
-              this.codeEntered = true
-            }else{
-              this.codeEntered= false
-            }
-          },
-          verify(){
-            //function to verify the entered code
-          },
-          back(){
-            this.$emit('back')
-            console.log('back')
-          }
-        }
+export default {
+  name: 'IdentityVerification',
+  data () {
+    return {
+      phoneNumber: {
+        countryCode: '+353',
+        number: '872251177'
+      },
+      codeStyle: {
+        color: '#768895'
+      },
+      verificationCode: null,
+      codeEntered: false
     }
+  },
+  methods: {
+    codeOutput (event) {
+      this.verificationCode = event.data
+      if (event.isfinished) {
+        this.codeEntered = true
+      } else {
+        this.codeEntered = false
+      }
+    },
+    verify () {
+      // function to verify the entered code
+    },
+    back () {
+      this.$emit('back')
+      console.log('back')
+    }
+  }
+}
 </script>
 
 <style lang="less">

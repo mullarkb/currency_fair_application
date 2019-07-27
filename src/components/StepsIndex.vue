@@ -24,29 +24,29 @@
 </template>
 
 <script>
-    export default {
-        name: "StepsIndex",
-        props:['step'],
-      computed:{
-          /* change which step is highlighted, depending on the step value passed as a prop
+export default {
+  name: 'StepsIndex',
+  props: ['step'],
+  computed: {
+    /* change which step is highlighted, depending on the step value passed as a prop
            */
-          step1(){
-            if(this.step == 1) {
-              return true
-            }else return false
-          },
-        step2(){
-          if(this.step == 2) {
-            return true
-          }else return false
-        },
-        step3(){
-          if(this.step == 3) {
-            return true
-          }else return false
-        }
-      }
+    step1 () {
+      if (this.step == 1) {
+        return true
+      } else return false
+    },
+    step2 () {
+      if (this.step == 2) {
+        return true
+      } else return false
+    },
+    step3 () {
+      if (this.step == 3) {
+        return true
+      } else return false
     }
+  }
+}
 </script>
 
 <style lang="less" scoped>
