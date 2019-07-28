@@ -8,7 +8,7 @@
     <div class="identity-card">
       <div class="card-header">
         <h2><img src="../assets/images/padlock.png">Identity verification required</h2>
-        <p>For your security, we occasionally require you to verify your identity by entering a code sent you your mobile device</p>
+        <p>For your security, we occasionally require you to verify your identity by entering a code sent to your mobile device.</p>
       </div>
       <div class="card-body">
         <p>Enter the code sent via SMS to
