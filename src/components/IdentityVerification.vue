@@ -59,8 +59,12 @@ export default {
       codeEntered: false
     }
   },
+  mounted(){
+    //api call for user data would go here if it's not passed as prop
+  },
   methods: {
     codeOutput (event) {
+      //if the code is entered, allow the user to click the verify button
       this.verificationCode = event.data
       if (event.isfinished) {
         this.codeEntered = true
@@ -72,8 +76,8 @@ export default {
       // function to verify the entered code
     },
     back () {
+      //tell parent the back button has been clicked
       this.$emit('back')
-      console.log('back')
     }
   }
 }
